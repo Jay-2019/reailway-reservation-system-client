@@ -1,0 +1,47 @@
+.Completed {
+  text-decoration: line-through;
+}
+
+.welcomeLeft {
+  height: 480px;
+  padding-left: 50px;
+}
+.welcomeRight {
+  height: 550px;
+  padding-right: 50px;
+}
+
+.welcomeCenter {
+  height: 180px;
+}
+
+.myTodo {
+  color: #dc3545;
+}
+
+.toDoGivesYouFocus {
+  color: #17a2b8;
+}
+
+.fromWorkToPlay {
+  color: #17a2b8;
+}
+
+.card {
+  margin-top: 50px;
+  height: auto;
+  width: 800px;
+}
+
+/* .cardBody {
+  width: 400px;
+} */
+
+.bgImgSignIn {
+  background-color: #e9ecef;
+}
+
+.navIcons {
+  width: 60%;
+  margin: 0 auto;
+}
