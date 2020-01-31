@@ -66,7 +66,7 @@ export default class EditTrain extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const updateTicket = {
+    const updateTrain = {
       trainNumber: this.state.trainNumber,
       trainName: this.state.trainName,
       from: this.state.from,
@@ -79,7 +79,7 @@ export default class EditTrain extends Component {
       .post(
         "http://localhost:4000/railwayReservationSystem/updateTrain/" +
           this.props.match.params.id,
-        updateTicket
+        updateTrain
       )
       .then(response => response)
       .catch(error => error.message);

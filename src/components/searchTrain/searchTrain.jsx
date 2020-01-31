@@ -7,15 +7,16 @@ export default class SearchTrain extends Component {
     to: "",
     isStationNotSame: false
   };
+
   handleFrom = event => {
     const { value } = event.target;
-    if (value != null) {
+    if (value !== null && value !== "Select") {
       this.setState({ from: value });
     }
   };
   handleTo = event => {
     const { value } = event.target;
-    if (value != null) {
+    if (value !== null && value !== "Select") {
       this.setState({ to: value });
     }
   };
@@ -27,14 +28,18 @@ export default class SearchTrain extends Component {
     }
     if (this.state.from === this.state.to) {
       //   this.setState({ isStationSame: true });
-      window.alert("! Please select Different station");
+      window.alert("! Please select Valid or Different station");
       return this.props.history.push("/searchTrain");
     }
   };
 
   render() {
     if (this.state.isStationNotSame) {
-      return <Redirect to="/resultTrain" />;
+      return (
+        <Redirect
+          to={"/resultTrain/" + this.state.from + "/" + this.state.to}
+        />
+      );
     }
 
     return (
@@ -60,6 +65,7 @@ export default class SearchTrain extends Component {
                           value={this.state.from}
                           required
                         >
+                          <option value="Select">Select</option>
                           <option value="Delhi">Delhi</option>
                           <option value="Kanpur">Kanpur</option>
                           <option value="Chitrakoot">Chitrakoot</option>
@@ -78,6 +84,7 @@ export default class SearchTrain extends Component {
                           value={this.state.to}
                           required
                         >
+                          <option value="Select">Select</option>
                           <option value="Delhi">Delhi</option>
                           <option value="Kanpur">Kanpur</option>
                           <option value="Chitrakoot">Chitrakoot</option>

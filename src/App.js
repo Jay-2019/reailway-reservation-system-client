@@ -9,6 +9,8 @@ import ListTrain from './components/listTrain/index';
 import EditTrain from './components/editTrain/index';
 import DeleteTrain from './components/deleteTrain/index';
 import SearchTrain from './components/searchTrain/index';
+import ResultTrain from './components/resultTrain/index';
+import BookTrain from './components/bookTrain/index';
 
 export default class App extends Component {
   render() {
@@ -25,6 +27,9 @@ export default class App extends Component {
             <Route path="/editTrain/:id" component={(prop) => <EditTrain {...prop} />} />
             <Route path="/deleteTrain/:id" component={(prop) => <DeleteTrain {...prop} />} />
             <Route path="/searchTrain" component={(prop) => <SearchTrain {...prop} />} />
+            <Route path="/resultTrain/:from/:to" component={(prop) => <ResultTrain {...prop} />} />
+            <Route path="/bookTrain/:trainNumber" component={(prop) => <BookTrain {...prop} />} />
+
 
           </ BrowserRouter>
         </div>
