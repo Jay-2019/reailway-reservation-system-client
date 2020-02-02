@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import UserNavigationBar from "../userNavigationBar";
 
 const Train = props => (
   <tr className="table-info">
@@ -72,7 +73,7 @@ export default class ResultTrain extends Component {
   render() {
     return (
       <div>
-        {" "}
+        <UserNavigationBar />
         <h1> Available Trains </h1>
         <p>Refresh for Recent Updates </p>
         <table className="table table-hover table-striped table-info">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/brand.png";
+import logo from "../../assets/admin-settings-male.png";
 import adminProfileIcon from "../../assets/user-check.svg";
 import createTrainIcon from "../../assets/file-plus.svg";
 import trainListIcon from "../../assets/book-open.svg";

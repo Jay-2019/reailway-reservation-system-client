@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import UserNavigationBar from "../userNavigationBar";
 
 export default class BookTrain extends Component {
   state = {
@@ -57,9 +58,6 @@ export default class BookTrain extends Component {
     this.setState({ passengerGender: value });
   };
 
-  // handleBookingConfirm = () => {
-  //   this.setState({ isBookingConfirm: true });
-  // };
   handleSubmit = event => {
     event.preventDefault();
     const newTicket = {
@@ -84,7 +82,9 @@ export default class BookTrain extends Component {
     axios
       .post(
         "http://localhost:4000/railwayReservationSystem/updateAvailableSeatCount/" +
-          this.state.trainNumber
+          this.state.trainNumber +
+          "/" +
+          this.props.userId
       )
       .then(response => console.log(response.data))
       .catch(error => console.log(error.message));
@@ -102,6 +102,9 @@ export default class BookTrain extends Component {
     }
     if (this.state.isBookingConfirm) {
       return <Redirect to="/myTicket" />;
+    }
+    if (this.props.userId === "") {
+      return <Redirect to="/signIn" />;
     }
     const trainInfoForm = (
       <div className="d-flex justify-content-center">
@@ -300,10 +303,14 @@ export default class BookTrain extends Component {
     // );
 
     return (
-      <>
-        <div>{this.state.addPassenger ? addPassengerForm : trainInfoForm}</div>
-        {/* <div>{this.state.isBookingConfirm ? isBookingConfirm : null}</div> */}
-      </>
+      <div>
+        <UserNavigationBar />
+        <div className="d-flex justify-content-center">
+          <div>
+            {this.state.addPassenger ? addPassengerForm : trainInfoForm}
+          </div>
+        </div>
+      </div>
     );
   }
 }

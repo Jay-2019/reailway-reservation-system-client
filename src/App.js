@@ -12,19 +12,18 @@ import DeleteTrain from './components/deleteTrain/index';
 import SearchTrain from './components/searchTrain/index';
 import ResultTrain from './components/resultTrain/index';
 import BookTrain from './components/bookTrain/index';
+import MyTicket from './components/myTicket/index';
 
 export default class App extends Component {
   state = {
     userId: '',
     userEmail: '',
     userPassword: ''
-
   }
 
   isSignIn = (data) => {
     const { _id, email, password } = data;
-    console.log(data);
-    console.log(_id);
+
     this.setState({
       userId: _id,
       userEmail: email,
@@ -33,7 +32,6 @@ export default class App extends Component {
   };
 
   render() {
-
     return (
       <>
         <div className="container-fluid">
@@ -50,6 +48,8 @@ export default class App extends Component {
             <Route path="/resultTrain/:from/:to" component={(prop) => <ResultTrain {...prop} />} />
 
             <Route path="/bookTrain/:trainNumber" component={(prop) => <BookTrain userId={this.state.userId} {...prop} />} />
+
+            <Route path="/myTicket" component={(prop) => <MyTicket userId={this.state.userId} {...prop} />} />
 
             {/* Private Routes  */}
             <Route path="/admin" component={(prop) => <Admin {...prop} />} />

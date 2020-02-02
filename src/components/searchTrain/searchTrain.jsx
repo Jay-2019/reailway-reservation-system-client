@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import UserNavigationBar from "../userNavigationBar/index";
 
 export default class SearchTrain extends Component {
   state = {
@@ -43,7 +44,12 @@ export default class SearchTrain extends Component {
     }
 
     return (
+      <div>
+        <UserNavigationBar />
+        <br />
+      
       <div className="d-flex justify-content-center">
+        
         <div className="card bg-light mb-3">
           <div className="card-header">
             <h3 className="d-flex justify-content-center">
@@ -110,6 +116,7 @@ export default class SearchTrain extends Component {
             </h5>
           </div>
         </div>
+      </div>
       </div>
     );
   }

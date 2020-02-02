@@ -13,7 +13,6 @@ const Train = props => (
     <td>{props.train.to}</td>
     <td>{props.train.totalSeat}</td>
     <td>{props.train.fair}</td>
-    {/* <td>{props.train.Completed === "true" ? "Completed" : "Incomplete"}</td> */}
     <td>
       <Link to={"/editTrain/" + props.train._id}>
         <img src={editIcon} alt="edit icon" />
