@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const Train = props => (
   <tr className="table-info">
@@ -24,13 +23,19 @@ const Train = props => (
       <b>{props.train.fair}</b>
     </td>
     <td>
-      <Link
-        className="btn btn-sm btn-outline-info"
-        role="button"
-        to={"/bookTrain/" + props.train.trainNumber}
-      >
-        Book Now
-      </Link>
+      {props.train.totalSeat === 0 ? (
+        <Link className="btn btn-sm btn-outline-info" role="button">
+          Not Available
+        </Link>
+      ) : (
+        <Link
+          className="btn btn-sm btn-outline-info"
+          role="button"
+          to={"/bookTrain/" + props.train.trainNumber}
+        >
+          Book Now
+        </Link>
+      )}
     </td>
   </tr>
 );

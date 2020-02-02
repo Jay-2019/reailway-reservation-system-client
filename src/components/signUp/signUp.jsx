@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import style from "../../style.module.css/signUp.style.css";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default class SignUp extends Component {
   state = {
@@ -11,8 +11,8 @@ export default class SignUp extends Component {
     createPassword: "",
     confirmPassword: "",
     termsAndConditions: false,
-    isUserExist: false,
-    isIncorrectPassword: false
+    isIncorrectPassword: false,
+    isSignUp: false
   };
 
   handleUserName = event => {
@@ -36,7 +36,6 @@ export default class SignUp extends Component {
     }
   };
 
-  // "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"
   handleCreatePassword = event => {
     const { value } = event.target;
     this.setState({ createPassword: value });
@@ -46,6 +45,7 @@ export default class SignUp extends Component {
     const { value } = event.target;
     this.setState({ confirmPassword: value });
   };
+
   handleTermsAndConditions = event => {
     const { id, name } = event.target;
     if (name === id) {
@@ -59,15 +59,14 @@ export default class SignUp extends Component {
       window.alert("Create & Confirm Password not Matched");
     }
 
-    // Creating newUser OBject...
+    // Creating newUser Object...
     const newUser = {
       userName: this.state.userName,
       gender: this.state.gender,
       email: this.state.email,
       createPassword: this.state.createPassword,
       confirmPassword: this.state.confirmPassword,
-      termsAndConditions: this.state.termsAndConditions,
-      isUserExist: true
+      termsAndConditions: this.state.termsAndConditions
     };
 
     // send data into database
@@ -87,11 +86,15 @@ export default class SignUp extends Component {
       confirmPassword: "",
       termsAndConditions: false,
       signUpDate: Date.now,
-      isUserExist: false
+      isSignUp: true
     });
   };
 
   render() {
+    if (this.state.isSignUp) {
+      return <Redirect to="/signIn" />;
+    }
+
     return (
       <Fragment>
         <div className=" p-3 mb-2  text-dark">

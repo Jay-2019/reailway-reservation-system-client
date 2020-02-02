@@ -9,7 +9,7 @@ export default class SignIn extends Component {
     confirmPassword: [],
     checkEmail: "",
     checkPassword: "",
-    isUserExist: false
+    isSignIn: false
   };
 
   componentDidMount() {
@@ -70,31 +70,32 @@ export default class SignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.checkEmail);
-    console.log(this.state.email.map(data => data));
-    // console.log(this.state.checkEmail === this.state.email.map(data => data));
-    console.log(this.checkEmail());
-    console.log(this.checkPassword());
+
     if (this.checkEmail() && this.checkPassword()) {
-      window.alert("Congratulations!!! you are Logged-In");
       axios
         .get(
-          "http://localhost:4000/todos/currentUser/" +
+          "http://localhost:4000/railwayReservationSystem/currentUser/" +
             this.state.checkEmail +
             "/" +
             this.state.checkPassword
         )
-        .then(response => this.props.sendLoggedInUserData(response.data))
-        .catch(error => console.log(error));
-      this.setState({ checkEmail: "", checkPassword: "", isUserExist: true });
+        .then(response => this.props.isSignIn(response.data))
+        .catch(error => console.log(error.message));
+
+      //reSet State properties
+      this.setState({
+        checkEmail: "",
+        checkPassword: "",
+        isSignIn: true
+      });
     } else {
       window.alert(" please!!!  Enter Valid Email-ID & Password");
     }
   };
 
   render() {
-    if (this.state.isUserExist) {
-      return <Redirect from={"/signIn"} to={"/userProfile"} />;
+    if (this.state.isSignIn) {
+      return <Redirect to={"/searchTrain"} />;
     }
 
     return (

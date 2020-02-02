@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default class BookTrain extends Component {
   state = {
@@ -74,15 +74,35 @@ export default class BookTrain extends Component {
     };
     axios
       .post(
-        "http://localhost:4000/railwayReservationSystem/confirmTicket",
+        "http://localhost:4000/railwayReservationSystem/confirmTicket/" +
+          this.props.userId,
         newTicket
       )
-      .then(response => response)
-      .catch(error => error.message);
-    console.log(newTicket);
+      .then(response => console.log(response.data))
+      .catch(error => console.log(error.message));
+
+    axios
+      .post(
+        "http://localhost:4000/railwayReservationSystem/updateAvailableSeatCount/" +
+          this.state.trainNumber
+      )
+      .then(response => console.log(response.data))
+      .catch(error => console.log(error.message));
+
+    window.alert("Booking Confirm :) ");
+
+    this.setState({
+      isBookingConfirm: true
+    });
   };
 
   render() {
+    if (this.state.totalSeat === 0) {
+      return <Redirect to="/searchTrain" />;
+    }
+    if (this.state.isBookingConfirm) {
+      return <Redirect to="/myTicket" />;
+    }
     const trainInfoForm = (
       <div className="d-flex justify-content-center">
         <div className="card bg-light mb-3">
