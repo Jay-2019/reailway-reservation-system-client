@@ -84,7 +84,7 @@ export default class EditTrain extends Component {
       .then(response => response)
       .catch(error => error.message);
 
-    window.alert("ticket created successfully");
+    window.alert("Train Updated successfully");
     this.setState({
       isTrainUpdated: true
     });
@@ -94,6 +94,10 @@ export default class EditTrain extends Component {
     if (this.state.isTrainUpdated) {
       return <Redirect to="/listTrain" />;
     }
+    if (this.props.adminId === "") {
+      return <Redirect to="/adminSignIn" />;
+    }
+
     return (
       <div>
         {" "}
@@ -102,7 +106,7 @@ export default class EditTrain extends Component {
           <div className="d-flex justify-content-center">
             <div className="card bg-light mb-3">
               <div className="card-header">
-                <h3 className="d-flex justify-content-center">Create Ticket</h3>
+                <h3 className="d-flex justify-content-center">Update Train</h3>
               </div>
               <div className="card-body">
                 <h5 className="card-title">
@@ -188,7 +192,7 @@ export default class EditTrain extends Component {
                         value="createTicket"
                         className="btn btn-dark btn-lg btn-block"
                       >
-                        Create Ticket
+                        Update Train
                       </button>
                     </div>
                   </form>

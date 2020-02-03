@@ -51,6 +51,7 @@ export default class App extends Component {
 
 
   render() {
+    console.log(this.state.userId);
     return (
       <>
         <div className="container-fluid">
@@ -82,7 +83,7 @@ export default class App extends Component {
 
             <Route path="/listTrain" component={(prop) => <ListTrain {...prop} />} />
 
-            <Route path="/editTrain/:id" component={(prop) => <EditTrain {...prop} />} />
+            <Route path="/editTrain/:id" component={(prop) => <EditTrain adminId={this.state.adminId} {...prop} />} />
 
             <Route path="/deleteTrain/:id" component={(prop) => <DeleteTrain {...prop} />} />
           </ BrowserRouter>
