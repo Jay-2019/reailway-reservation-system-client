@@ -9,7 +9,9 @@ export default class SignIn extends Component {
     confirmPassword: [],
     checkEmail: "",
     checkPassword: "",
-    isSignIn: false
+    isSignIn: false,
+    captcha: "",
+    userInputCaptcha: ""
   };
 
   componentDidMount() {
@@ -27,7 +29,25 @@ export default class SignIn extends Component {
         });
       })
       .catch(error => error.message);
+
+    this.handleCaptcha();
   }
+
+  handleCaptcha = () => {
+    const alphaNumericString =
+      "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const captchaLength = 8;
+    var randomString = "";
+    for (let i = 0; i < captchaLength; i++) {
+      var randomNumber = Math.floor(Math.random() * alphaNumericString.length);
+      randomString += alphaNumericString.substring(
+        randomNumber,
+        randomNumber + 1
+      );
+    }
+    this.setState({ captcha: randomString });
+    console.log(randomString);
+  };
 
   // check valid Email-ID
   checkEmail = () => {
@@ -68,10 +88,21 @@ export default class SignIn extends Component {
     }
   };
 
+  handleUserInputCaptcha = event => {
+    const { value } = event.target;
+    if (value != null) {
+      this.setState({ userInputCaptcha: value });
+    }
+  };
+
   handleSubmit = event => {
     event.preventDefault();
 
-    if (this.checkEmail() && this.checkPassword()) {
+    if (
+      this.checkEmail() &&
+      this.checkPassword() &&
+      this.state.captcha === this.state.userInputCaptcha
+    ) {
       axios
         .get(
           "http://localhost:4000/railwayReservationSystem/currentUser/" +
@@ -89,7 +120,7 @@ export default class SignIn extends Component {
         isSignIn: true
       });
     } else {
-      window.alert(" please!!!  Enter Valid Email-ID & Password");
+      window.alert(" please!!!  Enter Valid Email-ID & Password & Captcha");
     }
   };
 
@@ -136,7 +167,30 @@ export default class SignIn extends Component {
                       value={this.state.checkPassword}
                     />
                   </div>
-
+                  <div className="form-row">
+                    <div className="col">
+                      <label htmlFor="trainNumber">Captcha</label>
+                      <input
+                        type="name"
+                        className="form-control"
+                        id="captcha"
+                        value={this.state.captcha}
+                        readOnly
+                      />
+                    </div>
+                    <div className="col">
+                      <label htmlFor="trainName"> Fill Captcha</label>
+                      <input
+                        type="name"
+                        className="form-control"
+                        id="userInputCaptcha"
+                        onChange={this.handleUserInputCaptcha}
+                        value={this.state.userInputCaptcha}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <br />
                   <button
                     type="submit"
                     value="sign in"
