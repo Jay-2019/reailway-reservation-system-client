@@ -25,9 +25,7 @@ const Train = props => (
     </td>
     <td>
       {props.train.totalSeat === 0 ? (
-        <Link className="btn btn-sm btn-outline-info" role="button">
-          Not Available
-        </Link>
+        <button className="btn btn-sm btn-outline-info">Not Available</button>
       ) : (
         <Link
           className="btn btn-sm btn-outline-info"

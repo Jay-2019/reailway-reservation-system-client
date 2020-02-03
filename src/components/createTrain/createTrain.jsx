@@ -89,6 +89,11 @@ export default class CreateTrain extends Component {
     if (this.state.isTrainCreated) {
       return <Redirect to="/listTrain" />;
     }
+    console.log(this.props.adminId === "");
+    if (this.props.adminId === "") {
+      return <Redirect to="/adminSignIn" />;
+    }
+
     return (
       <div>
         <AdminNavigationBar />
@@ -193,4 +198,3 @@ export default class CreateTrain extends Component {
     );
   }
 }
-

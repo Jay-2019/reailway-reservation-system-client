@@ -30,19 +30,21 @@ export default class AdminNavigationBar extends Component {
 
           <div className={`collapse  navbar-collapse ${style.navIcons} `}>
             <ul className="navbar-nav  mx-auto">
-              &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;
               <li className="navbar-item">
                 <Link to="/adminProfile" className="nav-link">
                   <img src={adminProfileIcon} alt="adminProfileIcon" />
                 </Link>
               </li>
-              &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;
               <li className="navbar-item">
                 <Link to="/listTrain" className="nav-link">
                   <img src={trainListIcon} alt="trainListIcon" />
                 </Link>
               </li>
-              &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;
               <li className="navbar-item">
                 <Link to="/createTrain" className="nav-link">
                   <img src={createTrainIcon} alt="createTrainIcon" />
@@ -50,7 +52,6 @@ export default class AdminNavigationBar extends Component {
               </li>
             </ul>
           </div>
-
           <div className="collapse  navbar-collapse ">
             <ul className="navbar-nav  ml-auto">
               <li className="navbar-item">

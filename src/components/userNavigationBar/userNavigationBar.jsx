@@ -28,7 +28,9 @@ export default class UserNavigationBar extends Component {
 
             <div className={`collapse  navbar-collapse  ${style.navIcons} `}>
               <ul className="navbar-nav  mx-auto">
-                &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp;
                 <li className="navbar-item">
                   <Link to="/userProfile" className="nav-link">
                     <img src={userProfileIcon} alt="userProfileIcon" />

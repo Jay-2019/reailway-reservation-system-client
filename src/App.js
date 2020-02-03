@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Visit from './components/visit/index';
 import SignIn from './components/signIn/index';
 import SignUp from './components/signUp/index';
-import Admin from './components/adminNavigationBar/index';
+// import Admin from './components/adminNavigationBar/index';
 import CreateTrain from './components/createTrain/index';
 import ListTrain from './components/listTrain/index';
 import EditTrain from './components/editTrain/index';
@@ -13,23 +13,42 @@ import SearchTrain from './components/searchTrain/index';
 import ResultTrain from './components/resultTrain/index';
 import BookTrain from './components/bookTrain/index';
 import MyTicket from './components/myTicket/index';
+import AdminSignUp from './components/adminSignUp/index';
+import AdminSignIn from './components/adminSignIn/index';
 
 export default class App extends Component {
   state = {
     userId: '',
     userEmail: '',
-    userPassword: ''
+    userPassword: '',
+    adminId: '',
+    adminName: '',
+    adminEmail: '',
+    adminPassword: ''
   }
 
   isSignIn = (data) => {
-    const { _id, email, password } = data;
+    const { _id, userName, email, password } = data;
 
     this.setState({
       userId: _id,
+      userName: userName,
       userEmail: email,
-      userPassword: password
+      userPassword: password,
+
     });
   };
+
+  isAdminSignIn = (data) => {
+    const { _id, userName, email, password } = data;
+    this.setState({
+      adminId: _id,
+      adminName: userName,
+      adminEmail: email,
+      adminPassword: password
+    });
+  };
+
 
   render() {
     return (
@@ -52,9 +71,14 @@ export default class App extends Component {
             <Route path="/myTicket" component={(prop) => <MyTicket userId={this.state.userId} {...prop} />} />
 
             {/* Private Routes  */}
-            <Route path="/admin" component={(prop) => <Admin {...prop} />} />
 
-            <Route path="/createTrain" component={(prop) => <CreateTrain {...prop} />} />
+            <Route path="/adminSignUp" component={(prop) => <AdminSignUp {...prop} />} />
+
+            <Route path="/adminSignIn" component={(prop) => <AdminSignIn isAdminSignIn={this.isAdminSignIn} {...prop} />} />
+
+            {/* <Route path="/admin" component={(prop) => <Admin {...prop} />} /> */}
+
+            <Route path="/createTrain" component={(prop) => <CreateTrain adminId={this.state.adminId} {...prop} />} />
 
             <Route path="/listTrain" component={(prop) => <ListTrain {...prop} />} />
 
