@@ -105,7 +105,7 @@ export default class AdminSignUp extends Component {
             <div className={`card bg-secondary ${style.card}`}>
               <div className="card-header">
                 <div className="d-flex justify-content-center">
-                  <h3>Sign Up </h3>
+                  <h3>Admin Sign Up </h3>
                 </div>
               </div>
               <div className="card-body">

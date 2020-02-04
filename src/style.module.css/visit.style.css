@@ -1,0 +1,33 @@
+.media {
+  height: 0;
+  padding-top: 45.25%;
+}
+.card {
+  margin-top: 1px;
+  height: 720px;
+  width: 1000px;
+}
+.overlay {
+  position: "absolute";
+  top: 50px;
+  left: 50px;
+  color: black;
+  background-color: white;
+}
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 50px;
+
+  /* // transform: translate(-50% -50%),
+    // -ms-transform: translate(-50%,-50%), */
+}
+
+.testImage {
+  height: 600px !important;
+}
+.card-img {
+  height: 70% !important;
+}

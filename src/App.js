@@ -16,6 +16,7 @@ import MyTicket from './components/myTicket/index';
 import UserProfile from './components/userProfile/index';
 import AdminSignUp from './components/adminSignUp/index';
 import AdminSignIn from './components/adminSignIn/index';
+import Home from './components/home';
 
 export default class App extends Component {
   state = {
@@ -53,16 +54,16 @@ export default class App extends Component {
     });
   };
 
-
-
   render() {
-    console.log(this.state.userId);
     return (
       <>
         <div className="container-fluid">
           <BrowserRouter>
+
             {/* Public Routes */}
-            {/* <Route path="/" component={(prop) => <Visit {...prop} />} /> */}
+            <Route exact path="/">
+              <Home />
+            </Route>
 
             <Route path="/signUp" component={(prop) => <SignUp {...prop} />} />
 
@@ -89,8 +90,6 @@ export default class App extends Component {
             <Route path="/adminSignUp" component={(prop) => <AdminSignUp {...prop} />} />
 
             <Route path="/adminSignIn" component={(prop) => <AdminSignIn isAdminSignIn={this.isAdminSignIn} {...prop} />} />
-
-            {/* <Route path="/admin" component={(prop) => <Admin {...prop} />} /> */}
 
             <Route path="/createTrain" component={(prop) => <CreateTrain adminId={this.state.adminId} {...prop} />} />
 

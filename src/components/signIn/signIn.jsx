@@ -60,7 +60,7 @@ export default class SignIn extends Component {
     ctx.fillStyle = gradient;
     ctx.fillText(randomString, 10, 25);
     this.setState({ captcha: randomString });
-    console.log(randomString);
+ 
   };
 
   // check valid Email-ID
