@@ -18,7 +18,7 @@ export default class SignUp extends Component {
   handleUserName = event => {
     const { value } = event.target;
     if (value.match("^[a-zA-Z ]*$") != null) {
-      this.setState({ userName: value });
+      this.setState({ userName: value.toUpperCase() });
     }
   };
 
@@ -31,9 +31,7 @@ export default class SignUp extends Component {
 
   handleEmail = event => {
     const { value } = event.target;
-    if (value !== "") {
-      this.setState({ email: value });
-    }
+    this.setState({ email: value });
   };
 
   handleCreatePassword = event => {

@@ -45,6 +45,20 @@ export default class SignIn extends Component {
         randomNumber + 1
       );
     }
+
+    var c = document.getElementById("captcha");
+    var ctx = c.getContext("2d");
+
+    ctx.font = "18px Georgia";
+    ctx.font = "25px Verdana";
+    // Create gradient
+    let gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+    gradient.addColorStop("0", "magenta");
+    gradient.addColorStop("0.5", "blue");
+    gradient.addColorStop("1.0", "red");
+    // Fill with gradient
+    ctx.fillStyle = gradient;
+    ctx.fillText(randomString, 10, 25);
     this.setState({ captcha: randomString });
     console.log(randomString);
   };
@@ -72,27 +86,21 @@ export default class SignIn extends Component {
 
   handleEmail = event => {
     let { value } = event.target;
-    if (value !== "") {
-      this.setState({
-        checkEmail: value
-      });
-    }
+    this.setState({
+      checkEmail: value
+    });
   };
 
   handlePassword = event => {
     let { value } = event.target;
-    if (value !== "") {
-      this.setState({
-        checkPassword: value
-      });
-    }
+    this.setState({
+      checkPassword: value
+    });
   };
 
   handleUserInputCaptcha = event => {
     const { value } = event.target;
-    if (value != null) {
-      this.setState({ userInputCaptcha: value });
-    }
+    this.setState({ userInputCaptcha: value });
   };
 
   handleSubmit = event => {
@@ -167,19 +175,17 @@ export default class SignIn extends Component {
                       value={this.state.checkPassword}
                     />
                   </div>
-                  <div className="form-row">
+
+                  <div className="row">
+                    <canvas
+                      id="captcha"
+                      width="200"
+                      height="30"
+                      className={`col ${style.captcha}`}
+                    ></canvas>
+
                     <div className="col">
-                      <label htmlFor="trainNumber">Captcha</label>
-                      <input
-                        type="name"
-                        className="form-control"
-                        id="captcha"
-                        value={this.state.captcha}
-                        readOnly
-                      />
-                    </div>
-                    <div className="col">
-                      <label htmlFor="trainName"> Fill Captcha</label>
+                      <label htmlFor="fillCaptcha"> Fill Captcha</label>
                       <input
                         type="name"
                         className="form-control"
@@ -190,6 +196,38 @@ export default class SignIn extends Component {
                       />
                     </div>
                   </div>
+
+                  {/* <div className="form-row">
+                   
+
+                    <div className="col">
+                      <label htmlFor="trainNumber">Captcha</label>
+                      <input
+                        type="name"
+                        className="form-control"
+                        id="captcha"
+                        value={this.state.captcha}
+                        readOnly
+                      />
+                      <canvas
+                        id="captcha"
+                        width="200"
+                        height="370"
+                        className={style.captcha}
+                      ></canvas>
+                    </div>
+                    <div className="col">
+                      <label htmlFor="captcha"> Fill Captcha</label>
+                      <input
+                        type="name"
+                        className="form-control"
+                        id="userInputCaptcha"
+                        onChange={this.handleUserInputCaptcha}
+                        value={this.state.userInputCaptcha}
+                        required
+                      />
+                    </div>
+                  </div> */}
                   <br />
                   <button
                     type="submit"

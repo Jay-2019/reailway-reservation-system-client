@@ -13,13 +13,16 @@ import SearchTrain from './components/searchTrain/index';
 import ResultTrain from './components/resultTrain/index';
 import BookTrain from './components/bookTrain/index';
 import MyTicket from './components/myTicket/index';
+import UserProfile from './components/userProfile/index';
 import AdminSignUp from './components/adminSignUp/index';
 import AdminSignIn from './components/adminSignIn/index';
 
 export default class App extends Component {
   state = {
     userId: '',
+    userName: '',
     userEmail: '',
+    userGender: '',
     userPassword: '',
     adminId: '',
     adminName: '',
@@ -28,13 +31,14 @@ export default class App extends Component {
   }
 
   isSignIn = (data) => {
-    const { _id, userName, email, password } = data;
+    const { _id, userName, email, gender, confirmPassword } = data;
 
     this.setState({
       userId: _id,
       userName: userName,
       userEmail: email,
-      userPassword: password,
+      userGender: gender,
+      userPassword: confirmPassword,
 
     });
   };
@@ -50,6 +54,7 @@ export default class App extends Component {
   };
 
 
+
   render() {
     console.log(this.state.userId);
     return (
@@ -62,6 +67,14 @@ export default class App extends Component {
             <Route path="/signUp" component={(prop) => <SignUp {...prop} />} />
 
             <Route path="/signIn" component={(prop) => <SignIn isSignIn={this.isSignIn} {...prop} />} />
+
+            <Route path="/userProfile" component={(prop) => <UserProfile
+              userId={this.state.userId}
+              userName={this.state.userName}
+              userGender={this.state.userGender}
+              userEmail={this.state.userEmail}
+              userPassword={this.state.userPassword}
+              {...prop} />} />
 
             <Route path="/searchTrain" component={(prop) => <SearchTrain {...prop} />} />
 

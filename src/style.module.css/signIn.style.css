@@ -45,3 +45,7 @@
   width: 60%;
   margin: 0 auto;
 }
+
+.captcha {
+  border: 1px solid #d3d3d3;
+}
